@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 axios.defaults.baseURL = 'http://localhost:3001/api';
 
-const setAuthHeader = token => {
+export const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;}
 
 const clearAuthHeader = () => {
