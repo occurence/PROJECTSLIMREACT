@@ -1,5 +1,4 @@
 import { useEffect, lazy } from 'react';
-// import { useDispatch } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useUser } from '../hooks/useUser';
@@ -14,7 +13,6 @@ const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const ProductsPage = lazy(() => import('../pages/ProductsPage/ProductsPage'));
 
 export const App = () => {
-  // const dispatch = useDispatch();
   const { isLoggedIn, isRefreshing } = useUser();
 
   useEffect(() => {

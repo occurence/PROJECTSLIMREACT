@@ -8,7 +8,7 @@ const ProductsPage = () => {
             <Helmet>
                 <title>Products</title>
             </Helmet>
-            {!isLoggedIn && <div>Logged In Products</div>}
+            {isLoggedIn ? <div>Logged In Products</div> : <div>Logged Out Products</div>}
         </HelmetProvider>
     )
 };
