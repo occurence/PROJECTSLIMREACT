@@ -1,5 +1,5 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { useUser } from '../../hooks/useUser';
+import { useUser } from '../hooks/useUser';
 
 const ProductsPage = () => {
     const { isLoggedIn } = useUser();
@@ -8,7 +8,13 @@ const ProductsPage = () => {
             <Helmet>
                 <title>Products</title>
             </Helmet>
-            {isLoggedIn ? <div>Logged In Products</div> : <div>Logged Out Products</div>}
+            {isLoggedIn ? 
+                <>
+                    Logged In Products
+                </> : 
+                <>
+                    Logged Out Products
+                </>}
         </HelmetProvider>
     )
 };
