@@ -3,14 +3,16 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useUser } from '../hooks/useUser';
 import { setAuthHeader } from '../redux/user/userOperations';
-import { SharedLayout } from './SharedLayout/SharedLayout';
+import { SharedLayout } from './Layout/SharedLayout';
 import { Restricted } from './Routing/Restricted';
 import { Private } from './Routing/Private';
+import { Toaster } from 'react-hot-toast';
+import { Loader } from '../components/Layout/Loader';
 
-const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
-const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
-const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
-const ProductsPage = lazy(() => import('../pages/ProductsPage/ProductsPage'));
+const HomePage = lazy(() => import('../pages/HomePage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage'));
+const ProductsPage = lazy(() => import('../pages/ProductsPage'));
 
 export const App = () => {
   const { isLoggedIn, isRefreshing } = useUser();
@@ -22,19 +24,26 @@ export const App = () => {
   }, []);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <Loader />
   ) : (
+    <>
+    <Toaster
+      position="top-center"
+      reverseOrder={false}
+      
+    />
+    
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={isLoggedIn ? <Navigate to='/transactions' /> : <HomePage />} />
+        <Route index element={isLoggedIn ? <Navigate to='/products' /> : <HomePage />} />
         <Route path="/register"
           element={
-            <Restricted redirectTo="/transactions" component={<RegisterPage />} />
+            <Restricted redirectTo="/products" component={<RegisterPage />} />
           }
         />
         <Route path="/login"
           element={
-            <Restricted redirectTo="/transactions" component={<LoginPage />} />
+            <Restricted redirectTo="/products" component={<LoginPage />} />
           }
         />
         <Route path="/products"
@@ -44,5 +53,6 @@ export const App = () => {
         />
       </Route>
     </Routes>
+    </>
   );
 };
