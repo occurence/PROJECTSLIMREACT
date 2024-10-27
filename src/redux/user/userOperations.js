@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
+import { toast } from 'react-hot-toast';
 
 axios.defaults.baseURL = 'http://localhost:3001/api';
 
@@ -15,8 +16,10 @@ export const signUp = createAsyncThunk(
   async ({ name, email, password }, thunkAPI) => {
     try {
       const res = await axios.post('/users/signup', { name, email, password });
+      toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
       return res.data;
     } catch (error) {
+      toast.error(`Error ${error.response?.status}: \n${error.response?.data?.message}`, {style:{backgroundColor:"var(--error)"}});
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -30,8 +33,10 @@ export const logIn = createAsyncThunk(
       Cookies.set('access', res.data.accessToken);
       Cookies.set('refresh', res.data.refreshToken);
       setAuthHeader(res.data.token);
+      toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
       return res.data;
     } catch (error) {
+      toast.error(`Error ${error.response?.status}: \n${error.response?.data?.message}`, {style:{backgroundColor:"var(--error)"}});
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -42,8 +47,10 @@ export const current = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const res = await axios.post('/users/current');
+      toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
       return res.data;
     } catch (error) {
+      toast.error(`Error ${error.response?.status}: \n${error.response?.data?.message}`, {style:{backgroundColor:"var(--error)"}});
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -53,11 +60,14 @@ export const logOut = createAsyncThunk(
   '/users/logout',
   async (_, thunkAPI) => {
     try {
-      await axios.get('/users/logout');
+      const res = await axios.get('/users/logout');
+      toast.success(`Success ${res?.status}: \nLogout successful`, {style:{backgroundColor:"var(--success)"}});
       Cookies.remove('access');
       Cookies.remove('refresh');
       clearAuthHeader();
+      return res.data;
     } catch (error) {
+      toast.error(`Error ${error.response?.status}: \n${error.response?.data?.message}`, {style:{backgroundColor:"var(--error)"}});
       return thunkAPI.rejectWithValue(error.message);
     }
 });
@@ -76,9 +86,11 @@ export const refreshUser = createAsyncThunk(
     try {
       setAuthHeader(persistedRefreshToken);
       const res = await axios.post('/users/refresh', {sid: state.auth.sid});
+      toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
       setAuthHeader(res.data.accessToken);
       return res.data;
     } catch (error) {
+      toast.error(`Error ${error.response?.status}: \n${error.response?.data?.message}`, {style:{backgroundColor:"var(--error)"}});
       return thunkAPI.rejectWithValue(error.message);
     }
   }
