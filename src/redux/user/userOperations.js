@@ -98,10 +98,14 @@ export const refreshUser = createAsyncThunk(
     }
 
     try {
-      setAuthHeader(persistedRefreshToken);
-      const res = await axios.post('/users/refresh', {sid: state.auth.sid});
+      // setAuthHeader(persistedRefreshToken);
+      // const res = await axios.post('/users/refresh', {sid: state.auth.sid});
+      const res = await axios.post('/users/refresh', {refreshToken: persistedRefreshToken});
+      // const res = await axios.post('/users/refresh');
       toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
-      setAuthHeader(res.data.accessToken);
+      // setAuthHeader(res.data.accessToken);
+      // setAuthHeader(persistedToken);
+      setAuthHeader(persistedRefreshToken);
       return res.data;
     } catch (error) {
       toast.error(`Error ${error.response?.status}: \n${error.response?.data?.message}`, {style:{backgroundColor:"var(--error)"}});
