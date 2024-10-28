@@ -1,5 +1,7 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useUser } from '../hooks/useUser';
+import { DailyCaloriesForm } from '../components/Forms/DailyCaloriesForm';
+import main from '../components/App.module.css';
 
 const ProductsPage = () => {
     const { isLoggedIn } = useUser();
@@ -10,7 +12,11 @@ const ProductsPage = () => {
             </Helmet>
             {isLoggedIn ? 
                 <>
-                    Logged In Products
+                    <div className={main.left}>
+                        <DailyCaloriesForm />
+                    </div>
+                    <div className={main.right}>
+                    </div>
                 </> : 
                 <>
                     Logged Out Products
