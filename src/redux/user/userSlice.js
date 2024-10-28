@@ -15,7 +15,8 @@ const userSlice = createSlice({
     builder
       .addCase(signUp.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = null;
+        state.accessToken = null;
+        state.refreshToken = null;
         state.isLoggedIn = false;
       })
       .addCase(logIn.fulfilled, (state, action) => {
@@ -27,7 +28,7 @@ const userSlice = createSlice({
       })
       .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };
-        state.token = null;
+        state.accessToken = null;
         state.isLoggedIn = false;
       })
       .addCase(refreshUser.pending, state => {
