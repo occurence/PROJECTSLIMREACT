@@ -12,13 +12,13 @@ export const UserMenu = () => {
     <div className={main.menuWrapper}>
     <NavLink
         to="/"
-        className={({ isActive }) => (isActive ? main.linkActive : main.link)}
+        className={main.linkActive}
     >
         {user.name}
     </NavLink>
     <NavLink
         to="/"
-        className={({ isActive }) => (isActive ? main.linkActive : main.link)}
+        className={main.link}
         onClick={() => dispatch(logOut())}
     >
         Exit
