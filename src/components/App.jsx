@@ -12,7 +12,9 @@ import { Loader } from '../components/Layout/Loader';
 const HomePage = lazy(() => import('../pages/HomePage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
-const ProductsPage = lazy(() => import('../pages/ProductsPage'));
+// const ProductsPage = lazy(() => import('../pages/ProductsPage'));
+const CalculatorPage = lazy(() => import('../pages/CalculatorPage'));
+const DiaryPage = lazy(() => import('../pages/DiaryPage'));
 
 export const App = () => {
   const { isLoggedIn, isRefreshing } = useUser();
@@ -35,20 +37,25 @@ export const App = () => {
     
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={isLoggedIn ? <Navigate to='/products' /> : <HomePage />} />
+        <Route index element={isLoggedIn ? <Navigate to='/diary' /> : <HomePage />} />
         <Route path="/register"
           element={
-            <Restricted redirectTo="/products" component={<RegisterPage />} />
+            <Restricted redirectTo="/diary" component={<RegisterPage />} />
           }
         />
         <Route path="/login"
           element={
-            <Restricted redirectTo="/products" component={<LoginPage />} />
+            <Restricted redirectTo="/diary" component={<LoginPage />} />
           }
         />
-        <Route path="/products"
+        <Route path="/calculator"
           element={
-            <Private redirectTo="/login" component={<ProductsPage />} />
+            <Private redirectTo="/login" component={<CalculatorPage />} />
+          }
+        />
+                <Route path="/diary"
+          element={
+            <Private redirectTo="/login" component={<DiaryPage />} />
           }
         />
       </Route>
