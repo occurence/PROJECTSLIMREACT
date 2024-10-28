@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { logOut } from '../../redux/user/userOperations';
+import { logOut, refreshUser } from '../../redux/user/userOperations';
 import { useUser } from '../../hooks/useUser';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import main from '../App.module.css';
+import { toast } from 'react-hot-toast';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,13 @@ export const UserMenu = () => {
     <NavLink
         to="/"
         className={main.linkActive}
+        // onClick={() => {toast.success('Your message here!')}}
+        onClick={() => {toast((t) => (
+          <span>Refresh token<br />
+            <Link to="/" className={main.refresh}onClick={() => dispatch(refreshUser())}>Refresh</Link>
+            {/* <button onClick={() => dispatch(refreshUser())}>Dismiss</button> */}
+          </span>
+        ));}}
     >
         {user.name}
     </NavLink>
