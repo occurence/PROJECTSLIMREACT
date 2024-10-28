@@ -202,6 +202,22 @@
     padding: 0px;
     /* text-decoration: none;
     color: var(--white); */
+}.refresh {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    font-size: larger;
+    font-weight: 400;
+    color: var(--orange);
+    background-color: var(--white);
+    border: 2px solid var(--orange); 
+    border-radius: 30px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    align-content: center;
+    padding: 0px;
+    margin-top: 10px;
 }.auth {
     position: relative;
     display: flex;
