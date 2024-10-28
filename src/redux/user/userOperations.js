@@ -5,8 +5,8 @@ import { toast } from 'react-hot-toast';
 
 axios.defaults.baseURL = 'http://localhost:3001/api';
 
-export const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;}
+export const setAuthHeader = accessToken => {
+  axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;}
 
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';}
@@ -32,7 +32,7 @@ export const logIn = createAsyncThunk(
       const res = await axios.post('/users/login', { email, password });
       Cookies.set('access', res.data.accessToken);
       Cookies.set('refresh', res.data.refreshToken);
-      setAuthHeader(res.data.token);
+      setAuthHeader(res.data.accessToken);
       toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
       return res.data;
     } catch (error) {
@@ -71,6 +71,20 @@ export const logOut = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.message);
     }
 });
+
+export const update = createAsyncThunk(
+  '/users/update',
+  async ({ name, email }, thunkAPI) => {
+    try {
+      const res = await axios.patch('/users/update', { name, email });
+      toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
+      return res.data;
+    } catch (error) {
+      toast.error(`Error ${error.response?.status}: \n${error.response?.data?.message}`, {style:{backgroundColor:"var(--error)"}});
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const refreshUser = createAsyncThunk(
   '/users/refresh',
