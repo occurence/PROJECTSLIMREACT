@@ -21,16 +21,16 @@ export const LoginForm = () => {
     return !isLoggedIn &&
         <>
             <form className={main.form} onSubmit={handleSubmit} autoComplete="off">
-                <label className={main.label} style={{color:"var(--orange)",height:"2em"}}>LOG IN</label>
+                <label className={main.label} style={{color:"var(--orange)",height:"4em"}}>LOG IN</label>
                 <label className={main.label}>Email *
-                    <input type="email" name="email" />
+                    <input type="email" name="email" autoComplete="email" />
                 </label>
                 <label className={main.label}>Password *
-                    <input type="password" name="password" />
+                    <input type="password" name="password" autoComplete="password" />
                 </label>
-                <div>
+                <div className={main.auth}>
                     <button type="submit">Log in</button>
-                    <Link to="/register">Register</Link>
+                    <Link to="/register" className={main.redirect}>Register</Link>
                 </div>
             </form>
         </>
