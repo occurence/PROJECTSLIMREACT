@@ -5,7 +5,9 @@ const userSlice = createSlice({
   name: 'user',
   initialState: {
     user: { name: null, email: null },
-    token: null,
+    // token: null,
+    accessToken: JSON.parse(localStorage.getItem('persist:user'))?.accessToken ?? null,
+    refreshToken: JSON.parse(localStorage.getItem('persist:user'))?.refreshToken ?? null,
     isLoggedIn: false,
     isRefreshing: false,
   },
@@ -18,7 +20,9 @@ const userSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        // state.token = action.payload.token;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, state => {
@@ -30,7 +34,9 @@ const userSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
+        state.accessToken = action.payload.accessToken;//
+        state.refreshToken = action.payload.refreshToken;//
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
