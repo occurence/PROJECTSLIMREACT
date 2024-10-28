@@ -1,5 +1,6 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useUser } from '../hooks/useUser';
+import { DailyCaloriesForm } from '../components/Forms/DailyCaloriesForm';
 import main from '../components/App.module.css';
 
 const HomePage = () => {
@@ -11,7 +12,9 @@ const HomePage = () => {
             </Helmet>
             {!isLoggedIn &&
                 <>
-                    <div className={main.left}>LEFT</div>
+                    <div className={main.left}>
+                        <DailyCaloriesForm />
+                    </div>
                     <img src={require("../images/backgroundwhole.png")} className={main.backgroundWhole} />
                 </>}
         </HelmetProvider>
