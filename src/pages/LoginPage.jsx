@@ -15,7 +15,7 @@ const LoginPage = () => {
                     Logged In Login
                 </> : 
                 <>
-                    <div className={main.left}>LEFT
+                    <div className={main.left}>
                         <LoginForm />
                     </div>
                     <img src={require("../images/backgroundwhole.png")} className={main.backgroundWhole} />
