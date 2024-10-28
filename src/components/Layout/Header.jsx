@@ -10,8 +10,8 @@ export const Header = () => {
 
   return (
     <div>
-      {isLoggedIn && <div className={main.header}><div className={main.headerWrapperLeft}><Logo /><Navigation /></div><div className={main.headerWrapperRight}><UserMenu /></div></div>}
-      {!isLoggedIn && <div className={main.header}><div className={main.headerWrapperLeft}><Logo /><AuthNav /></div></div>}
+      {isLoggedIn && <div className={main.header}><div className={main.headerWrapperLeft}><Logo /><hr className={main.hrLeft} /><Navigation /></div><div className={main.headerWrapperRight}><UserMenu /><hr className={main.hrRight} /></div></div>}
+      {!isLoggedIn && <div className={main.header}><div className={main.headerWrapperLeft}><Logo /><hr className={main.hrLeft} /><AuthNav /></div></div>}
     </div>
   );
 };
