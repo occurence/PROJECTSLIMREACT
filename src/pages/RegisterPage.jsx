@@ -15,7 +15,7 @@ const RegisterPage = () => {
                     Logged In Register
                 </> : 
                 <>
-                    <div className={main.left}>LEFT
+                    <div className={main.left}>
                         <RegistrationForm />
                     </div>
                     <img src={require("../images/backgroundwhole.png")} className={main.backgroundWhole} />
