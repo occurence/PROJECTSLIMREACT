@@ -7,11 +7,14 @@
   --grayLight: rgba(224, 224, 224, 1);
   --grayFade: rgba(240, 241, 243, 1);
   --orange: rgba(252, 132, 45, 1);
+  --orangeLight: rgba(252, 132, 45, 0.5);
   /* --error: rgba(252, 132, 45, 0.1); */
   --blue: rgba(38, 64, 97, 1);
   --success: rgba(222,247,236,1);
   --error: rgba(253,232,232,1);
   --warning: rgba(254,236,220,1);
+  /* --overlay: rgba(0, 0, 0, 0.2); */
+  --overlay: rgba(155, 159, 170, 0.5);
   
 }
 body {
@@ -26,7 +29,7 @@ body {
     monospace;
 }h1, h2, h3, h4, h5, h6, p { margin: 0; } ul, ol { margin: 0; padding: 0; list-style: none; } img { display: block; max-width: 100%; height: auto;
 }li {list-style: none;
-}input[type=text],input[type=email],input[type=password],input[type=number] {
+}input,input[type=text],input[type=email],input[type=password],input[type=number] {
   width: 100%;
   /* background: transparent; */
   /* background: var(--white); */
@@ -44,8 +47,8 @@ body {
   /* padding-bottom: 15px; */
   /* color-scheme: light; */
 }input[type=date]{
-  width: 90%;
-  padding: 8px;
+  width: 85%;
+  /* padding: 8px; */
   font: 34px Verdana, sans-serif;
   font-weight: 700;
   border: none;
@@ -59,7 +62,7 @@ body {
   font-size: larger !important;
 }button {
   position: relative;
-  display: inline-block;
+  display: flex;
   text-decoration: none;
   font-size: larger;
   font-weight: 400;
@@ -71,6 +74,8 @@ body {
   text-align: center;
   border: 0;
   padding: 0px;
+  align-items: center;
+  justify-content: center;
 }button:focus, button:active, button:visited {
   border: none;
 }input[type=radio] {
