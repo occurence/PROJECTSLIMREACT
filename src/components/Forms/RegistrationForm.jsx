@@ -26,18 +26,18 @@ export const RegistrationForm = () => {
             <form className={main.form} onSubmit={handleSubmit} autoComplete="off">
                 <label className={main.label} style={{color:"var(--orange)",height:"4em"}}>REGISTER</label>
                 <label className={main.label}>Name *
-                    <input type="text" name="name" autoComplete="name" />
+                    <input type="text" name="name" autoComplete="name" required
+                    pattern="/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/" />
                 </label>
                 <label className={main.label}>Email *
-                    <input type="email" name="email" autoComplete="email" />
+                    <input type="email" name="email" autoComplete="email" required
+                    pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" />
                 </label>
                 <label className={main.label}>Password *
-                    <input type="password" name="password" autoComplete="new-password" />
+                    <input type="password" name="password" autoComplete="new-password" required />
                 </label>
                 <div className={main.auth}>
                     <button type="submit">Register</button>
-                    {/* <button><Link to="/login" className={main.redirect}>Log in</Link></button> */}
-                    {/* <button><Link to="/login" style={{textDecoration:"none",color:"var(--white)"}}>Log in</Link></button> */}
                     <Link to="/login" className={main.redirect}>Log in</Link>
                 </div>
             </form>
