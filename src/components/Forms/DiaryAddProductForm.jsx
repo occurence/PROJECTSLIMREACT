@@ -15,83 +15,55 @@ import { setFilter } from '../../redux/filter/filterSlice';
 export const DairyAddProductForm = () => {
     const dispatch = useDispatch();
     const { isLoggedIn } = useUser();
-    const { products, isLoadingProducts, isErrorProducts, filteredProducts } = useProduct();
-    const [inputValue, setInputValue] = useState('');
-    // const products = useSelector(selectProduct);
+    const { isLoadingProducts, isErrorProducts, filteredProducts } = useProduct();
+    const [productInput, setProductInput] = useState('');
+    const [isDropdown, setIsDropdown] = useState(false);
 
-    const filter = useSelector(selectFilter);//getFilter
-    const handleFilterChange = e => {
-        dispatch(setFilter(e.target.value));
-    }
     useEffect(() => {
         dispatch(fetchProducts());
     }, []);
-    // dispatch(fetchProducts());
+
+    const filter = useSelector(selectFilter);
+    const handleFilterChange = e => {
+        setProductInput(e.target.value);
+        dispatch(setFilter(e.target.value));
+    }
+
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.currentTarget;
-        // alert(products);
-
+        setProductInput('');
+        dispatch(setFilter(''));
+        setIsDropdown(false);
         form.reset();
-      };
+    }
 
-    //   const data = [ 'America', 'India', 'Australia', 'Argentina', 'Ireland', 'Indonesia', 'Iceland', 'Japan' ]
-    //   const data = products.title;
-    // {products.map((product) => {product.title})}
-        // const data = products.map((product) => product.title);
-        // const data = filteredProducts.map((filteredProducts) => filteredProducts.title);
-        // let data = products.map((product) => product.title);
-        // data = filteredProducts.map((filteredProducts) => filteredProducts.title);
-        // let data;
-        // {!isLoadingProducts && !isErrorProducts && filteredProducts.length > 0 && (
-        //     data = filteredProducts.map((filteredProduct) => filteredProduct.title)
-        // )}
+    const handleDropdown = e => {
+        setProductInput(e);
+        dispatch(setFilter(e));
+        setIsDropdown(false);//
+    }
+
     return isLoggedIn &&
         <>
-            {/* <ul>
-                {products.map((product) => <li>{product.title}</li>)}
-                {products.map((product) => alert(product.title))}
-            </ul> */}
             <form className={main.form} onSubmit={handleSubmit} autoComplete="off">
-                {/* <label className={main.label} style={{color:"var(--orange)",height:"4em"}}>ADD PRODUCT</label> */}
                 <DiaryDateCalendar />
                 <div className={main.row}>
-                    {/* <label className={main.label}>Enter product name
-                        <input type="text" name="product" autoComplete="product" />
-                        <ComboBox selectedOptionColor='#FFEBDC' className={main.combobox} options={data} name="product" enableAutocomplete
-                            hightlighColor='#FFEBDC'
-                            value={filter}
-                            onChange={handleFilterChange}
-                            // defaultValue=""
-                        />
-                    </label> */}
-                    <div style={{ position: 'relative' }}>
+                    <div style={{ position: 'relative', width:"70%" }}>
                         <label className={main.label}>Enter product name
-                            <input type="text" name="product" autoComplete="product"
-                                value={filter}
+                            <input type="text" name="product"
+                                value={productInput}
                                 onChange={handleFilterChange}
+                                onClick={() => setIsDropdown(!isDropdown)}
+                                autoComplete="off"
                             />
                         </label>
-                        { !isLoadingProducts && !isErrorProducts && filteredProducts.length > 0 && (
-                            <ul style={{
-                                position: 'absolute',
-                                backgroundColor: 'white',
-                                border: '1px solid #ccc',
-                                maxHeight: '150px',
-                                overflowY: 'auto',
-                                zIndex: 1000,
-                            }}>
+                        {isDropdown && !isLoadingProducts && !isErrorProducts && filteredProducts.length > 0 && (
+                            <ul className={main.dropdown}>
                                 {filteredProducts.map((filteredProduct) => (
-                                    <li
-                                        // key={index}
-                                        // onClick={() => handleOptionClick(filteredProduct.title)}
-                                        style={{
-                                            padding: '8px',
-                                            // cursor: 'pointer',
-                                            // backgroundColor: selectedOptionColor, // Highlight selected option color
-                                        }}
-                                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFEBDC'}
-                                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ffffff'}
+                                    <li className={main.dropdownItem}
+                                        key={filteredProduct.title}
+                                        onClick={() => {handleDropdown(filteredProduct.title);setIsDropdown(!isDropdown)}}
                                     >
                                         {filteredProduct.title}
                                     </li>
@@ -99,7 +71,7 @@ export const DairyAddProductForm = () => {
                             </ul>
                         )}
                     </div>
-                    <div style={{position:"relative",display:"flex",gap:"80px"}}>
+                    <div style={{position:"relative",display:"flex",gap:"50px"}}>
                         <label className={main.label} style={{width:"30%",textAlign:"end"}}>Grams
                             <input type="number" step="100" min="0" style={{width:"85%"}} name="grams" autoComplete="grams" />
                         </label>
