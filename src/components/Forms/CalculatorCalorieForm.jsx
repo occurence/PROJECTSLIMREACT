@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useUser } from '../../hooks/useUser';
-import { update } from '../../redux/user/userOperations';
+import { update } from '../../redux/user/userOperations';//todayOperations
 import main from '../App.module.css';
 
 export const CalculatorCalorieForm = () => {

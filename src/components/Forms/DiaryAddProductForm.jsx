@@ -4,12 +4,8 @@ import { useUser } from '../../hooks/useUser';
 import { useProduct } from '../../hooks/useProduct';
 import main from '../App.module.css';
 import { DiaryDateCalendar } from './DiaryDateCalendar';
-import ComboBox from 'react-responsive-combo-box'
 import 'react-responsive-combo-box/dist/index.css'
 import { fetchProducts } from '../../redux/product/productsOperations';
-import { useSelector } from 'react-redux';
-import {selectProduct } from '../../redux/product/productsSelectors';
-import { selectFilter } from '../../redux/filter/filterSelector';
 import { setFilter } from '../../redux/filter/filterSlice';
 
 export const DairyAddProductForm = () => {
@@ -23,7 +19,6 @@ export const DairyAddProductForm = () => {
         dispatch(fetchProducts());
     }, []);
 
-    const filter = useSelector(selectFilter);
     const handleFilterChange = e => {
         setProductInput(e.target.value);
         dispatch(setFilter(e.target.value));
@@ -76,7 +71,7 @@ export const DairyAddProductForm = () => {
                             <input type="number" step="100" min="0" style={{width:"85%"}} name="grams" autoComplete="grams" />
                         </label>
                         <button type="submit" className={main.add}>
-                            <img src={require("../../images/insert.png")} />
+                            <img src={require("../../images/insert.png")} alt="add button" />
                         </button>
                     </div>
                     
