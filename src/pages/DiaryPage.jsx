@@ -11,19 +11,17 @@ const DiaryPage = () => {
             <Helmet>
                 <title>Diary</title>
             </Helmet>
-            {isLoggedIn ? 
-                <>
+            {isLoggedIn &&
+                (<>
                     <div className={main.left}>
                         <DairyAddProductForm />
                     </div>
                     <div className={main.right}>
                         <RightSideBar />
                     </div>
-                    <img src={require("../images/leaveshalf.png")} className={main.backgroundHalf} />
-                </> : 
-                <>
-                    Logged Out Calculator
-                </>}
+                    <img src={require("../images/leaveshalf.png")} alt="background leaves" className={main.backgroundHalf} />
+                </>)
+            }
         </HelmetProvider>
     )
 };
