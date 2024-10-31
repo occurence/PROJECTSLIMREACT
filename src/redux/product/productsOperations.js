@@ -33,7 +33,7 @@ export const addProduct = createAsyncThunk(
   async ({ categories, weight, title, calories, groupBloodNotAllowed }, thunkAPI) => {
     try {
       const res = await axios.post('/products', { categories, weight, title, calories, groupBloodNotAllowed });
-      toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
+      // toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
       return res.data;
     } catch (error) {
       toast.error(`Error ${error.response?.status}: \n${error.response?.data?.message}`, {style:{backgroundColor:"var(--error)"}});

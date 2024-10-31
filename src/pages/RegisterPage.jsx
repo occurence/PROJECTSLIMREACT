@@ -10,7 +10,7 @@ const RegisterPage = () => {
             <Helmet>
                 <title>Register</title>
             </Helmet>
-            {isLoggedIn && 
+            {!isLoggedIn && 
                 (<>
                     <div className={main.left}>
                         <RegistrationForm />

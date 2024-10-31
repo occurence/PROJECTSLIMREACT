@@ -8,45 +8,26 @@ export const DiaryDateCalendar = () => {
     const dispatch = useDispatch();
     const { calendar, month, year, day } = useToday();
     const today = new Date(month);
-    const dateMonth = new Date(month);
-    const dateYear = new Date(year);
-    const dateDay = new Date(day);
     const [date, setDate] = useState(today.toLocaleDateString('en-CA'));
-    const [inDateMonth, setInDateMonth] = useState(dateMonth.toLocaleDateString('en-CA'));
-    const [inDateYear, setInDateYear] = useState(dateYear.toLocaleDateString('en-CA'));
-    const [inDateDay, setInDateDay] = useState(dateDay.toLocaleDateString('en-CA'));
-
 
     const handleCalendarChange = e => {
-        // dispatch(setCalendar(e.target.value));
-        // dispatch(setMonth(e.target.value));
-        // dispatch(setYear(e.target.value));
-        // dispatch(setDay(e.target.value));
-        // alert(dateMonth);
-        // alert(dateYear);
-        // alert(dateYear);
-        // alert(calendar.month);
+        const date = new Date(e.target.value);
+        const formatMonth = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+        const formatYear = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+        const formatDay = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 
         dispatch(setCalendar({
-            month: e.target.value,
-            year: e.target.value,
-            day: e.target.value,
+            month: formatMonth,
+            year: formatYear,
+            day: formatDay,
         }));
-    // alert(month);
-    // alert(year);
-    // alert(day);
     }
 
     return (
         <>
             <label className={main.label}>
-                {/* <input type="date" name="date" onChange={(e) => {setDate(e);setCalendar();}} defaultValue={date.toString()} autoComplete="date" className={main.calendarLabel} /> */}
-                {/* <input type="date" name="date" onChange={(e) => {setDate(e);setCalendar();}} defaultValue={date.toString()} autoComplete="date" className={main.calendarLabel} /> */}
-                {/* <input type="date" name="date" defaultValue={dateMonth.toString()} autoComplete="date" className={main.calendarLabel} /> */}
-                {/* <input type="date" name="date" onChange={handleCalendarChange} defaultValue={inDateMonth.toString()} autoComplete="date" className={main.calendarLabel} /> */}
-                {/* <input type="date" name="date" onChange={handleCalendarChange} defaultValue={inDateMonth.toString()} autoComplete="date" className={main.calendarLabel} /> */}
                 <input type="date" name="date" onChange={handleCalendarChange} defaultValue={date.toString()} autoComplete="date" className={main.calendarLabel} />
             </label>
         </>
-        )
+    )
 }

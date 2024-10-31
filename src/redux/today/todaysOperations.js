@@ -7,7 +7,7 @@ export const getTodays = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const res = await axios.get('/todays');
-      toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
+      // toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
       return res.data;
     } catch (error) {
       toast.error(`Error ${error.response?.status}: \n${error.response?.data?.message}`, {style:{backgroundColor:"var(--error)"}});
