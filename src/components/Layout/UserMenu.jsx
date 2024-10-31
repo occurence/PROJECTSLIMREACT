@@ -14,11 +14,9 @@ export const UserMenu = () => {
     <NavLink
         to="/"
         className={main.linkActive}
-        // onClick={() => {toast.success('Your message here!')}}
         onClick={() => {toast((t) => (
           <span>Refresh token<br />
-            <Link to="/" className={main.refresh}onClick={() => dispatch(refreshUser())}>Refresh</Link>
-            {/* <button onClick={() => dispatch(refreshUser())}>Dismiss</button> */}
+            <Link to="/" className={main.refresh} onClick={() => dispatch(refreshUser())}>Refresh</Link>
           </span>
         ));}}
     >
