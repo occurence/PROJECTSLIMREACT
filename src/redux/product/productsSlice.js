@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from '../../redux/user/userOperations';
-import { fetchProducts, addProduct, deleteProduct, editProduct } from './productsOperations';
+import { getProducts, getProductById, addProduct, deleteProduct, editProduct } from './productsOperations';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -21,13 +21,20 @@ const productsSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchProducts.pending, handlePending)
-      .addCase(fetchProducts.fulfilled, (state, action) => {
+      .addCase(getProducts.pending, handlePending)
+      .addCase(getProducts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = null;
         state.items = action.payload;
       })
-      .addCase(fetchProducts.rejected, handleRejected)
+      .addCase(getProducts.rejected, handleRejected)
+      .addCase(getProductById.pending, handlePending)
+      .addCase(getProductById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = null;
+        state.items = action.payload;
+      })
+      .addCase(getProductById.rejected, handleRejected)
       .addCase(addProduct.pending, handlePending)
       .addCase(addProduct.fulfilled, (state, action) => {
         state.isLoading = false;
