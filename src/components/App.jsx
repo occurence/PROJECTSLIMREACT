@@ -8,22 +8,30 @@ import { Restricted } from './Routing/Restricted';
 import { Private } from './Routing/Private';
 import { Toaster } from 'react-hot-toast';
 import { Loader } from '../components/Layout/Loader';
+import { useDispatch } from 'react-redux';
+import { getProducts } from '../redux/product/productsOperations';
+import { getTodays } from '../redux/today/todaysOperations';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
-// const ProductsPage = lazy(() => import('../pages/ProductsPage'));
 const CalculatorPage = lazy(() => import('../pages/CalculatorPage'));
 const DiaryPage = lazy(() => import('../pages/DiaryPage'));
 
 export const App = () => {
+  const dispatch = useDispatch();
   const { isLoggedIn, isRefreshing } = useUser();
 
   useEffect(() => {
-    const authToken = Cookies.get('access');
+    const accessToken = Cookies.get('access');
     const refreshToken = Cookies.get('refresh');
-    if(authToken && refreshToken){setAuthHeader(authToken);}
-  }, []);
+
+    if(accessToken && refreshToken){setAuthHeader(accessToken)}
+    if(isLoggedIn){
+      dispatch(getProducts());
+      dispatch(getTodays());
+    }
+  }, [isLoggedIn]);
 
   return isRefreshing ? (
     <Loader />
@@ -32,7 +40,6 @@ export const App = () => {
     <Toaster
       position="top-center"
       reverseOrder={false}
-      
     />
     
     <Routes>
@@ -53,7 +60,7 @@ export const App = () => {
             <Private redirectTo="/login" component={<CalculatorPage />} />
           }
         />
-                <Route path="/diary"
+        <Route path="/diary"
           element={
             <Private redirectTo="/login" component={<DiaryPage />} />
           }
