@@ -10,16 +10,14 @@ const LoginPage = () => {
             <Helmet>
                 <title>Login</title>
             </Helmet>
-            {isLoggedIn ? 
-                <>
-                    Logged In Login
-                </> : 
-                <>
+            {!isLoggedIn && 
+                (<>
                     <div className={main.left}>
                         <LoginForm />
                     </div>
-                    <img src={require("../images/backgroundwhole.png")} className={main.backgroundWhole} />
-                </>}
+                    <img src={require("../images/backgroundwhole.png")} alt="background whole" className={main.backgroundWhole} />
+                </>)
+            }
             
         </HelmetProvider>
     )
