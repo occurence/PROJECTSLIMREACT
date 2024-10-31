@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { DebounceInput } from 'react-debounce-input';
 import { setFilter } from '../../redux/filter/filterSlice';
 import { useUser } from '../../hooks/useUser';
 import { useProduct } from '../../hooks/useProduct';
-import { useToday } from '../../hooks/useToday';
 import { DiaryDateCalendar } from './DiaryDateCalendar';
 import main from '../App.module.css';
 
@@ -14,7 +13,6 @@ export const DairyAddProductForm = () => {
     const dispatch = useDispatch();
     const { isLoggedIn } = useUser();
     const { isLoadingProducts, isErrorProducts, filteredProducts } = useProduct();
-    const { filteredTodays } = useToday();
     const [productInput, setProductInput] = useState('');
     const [isDropdown, setIsDropdown] = useState(false);
 
@@ -35,24 +33,11 @@ export const DairyAddProductForm = () => {
     const handleDropdown = e => {
         setProductInput(e);
         dispatch(setFilter(e));
-        setIsDropdown(false);//
+        setIsDropdown(false);
     }
 
     return isLoggedIn &&
         <>
-        {/* {filteredTodays}
-            <ul>
-                {filteredTodays.map(({filteredToday}) => <li key={filteredToday._id}>{filteredToday.date}</li>)}
-                {filteredTodays.map((filteredToday) => {
-                    const date = new Date(filteredToday.date);
-                    const mmddyyyy = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-                    const yyyymmdd = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-                    const ddmmyyy = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
-                    return (<li key={filteredToday._id}>
-                        {mmddyyyy}sdf
-                    </li>)
-                    })}
-            </ul> */}
             <form className={main.form} onSubmit={handleSubmit} autoComplete="off">
                 <DiaryDateCalendar />
                 <div className={main.row}>
