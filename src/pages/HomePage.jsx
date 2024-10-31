@@ -11,12 +11,13 @@ const HomePage = () => {
                 <title>Home</title>
             </Helmet>
             {!isLoggedIn &&
-                <>
+                (<>
                     <div className={main.left}>
                         <DailyCaloriesForm />
                     </div>
-                    <img src={require("../images/backgroundwhole.png")} className={main.backgroundWhole} />
-                </>}
+                    <img src={require("../images/backgroundwhole.png")} alt="background whole" className={main.backgroundWhole} />
+                </>)
+            }
         </HelmetProvider>
     )
 };
