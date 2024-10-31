@@ -4,8 +4,7 @@ import { signUp, logIn, logOut, refreshUser } from './userOperations';
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    user: { name: null, email: null },
-    // token: null,
+    user: { _id: null, name: null, email: null },
     accessToken: JSON.parse(localStorage.getItem('persist:user'))?.accessToken ?? null,
     refreshToken: JSON.parse(localStorage.getItem('persist:user'))?.refreshToken ?? null,
     isLoggedIn: false,
@@ -21,13 +20,12 @@ const userSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        // state.token = action.payload.token;
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, state => {
-        state.user = { name: null, email: null };
+        state.user = { _id: null, name: null, email: null };
         state.accessToken = null;
         state.isLoggedIn = false;
       })
