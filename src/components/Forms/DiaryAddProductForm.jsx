@@ -1,23 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { DebounceInput } from 'react-debounce-input';
+import { setFilter } from '../../redux/filter/filterSlice';
 import { useUser } from '../../hooks/useUser';
 import { useProduct } from '../../hooks/useProduct';
-import main from '../App.module.css';
+import { useToday } from '../../hooks/useToday';
 import { DiaryDateCalendar } from './DiaryDateCalendar';
-import 'react-responsive-combo-box/dist/index.css'
-import { fetchProducts } from '../../redux/product/productsOperations';
-import { setFilter } from '../../redux/filter/filterSlice';
+import main from '../App.module.css';
+
+import { DiaryProductsList } from './DiaryProductsList/DiaryProductsList';
 
 export const DairyAddProductForm = () => {
     const dispatch = useDispatch();
     const { isLoggedIn } = useUser();
     const { isLoadingProducts, isErrorProducts, filteredProducts } = useProduct();
+    const { filteredTodays } = useToday();
     const [productInput, setProductInput] = useState('');
     const [isDropdown, setIsDropdown] = useState(false);
-
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, []);
 
     const handleFilterChange = e => {
         setProductInput(e.target.value);
@@ -41,15 +40,28 @@ export const DairyAddProductForm = () => {
 
     return isLoggedIn &&
         <>
+        {/* {filteredTodays}
+            <ul>
+                {filteredTodays.map(({filteredToday}) => <li key={filteredToday._id}>{filteredToday.date}</li>)}
+                {filteredTodays.map((filteredToday) => {
+                    const date = new Date(filteredToday.date);
+                    const mmddyyyy = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+                    const yyyymmdd = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+                    const ddmmyyy = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+                    return (<li key={filteredToday._id}>
+                        {mmddyyyy}sdf
+                    </li>)
+                    })}
+            </ul> */}
             <form className={main.form} onSubmit={handleSubmit} autoComplete="off">
                 <DiaryDateCalendar />
                 <div className={main.row}>
                     <div style={{ position: 'relative', width:"70%" }}>
                         <label className={main.label}>Enter product name
-                            <input type="text" name="product"
+                            <DebounceInput type="text" name="product"
                                 value={productInput}
                                 onChange={handleFilterChange}
-                                onClick={() => setIsDropdown(!isDropdown)}
+                                onClick={() => {setIsDropdown(!isDropdown)}}
                                 autoComplete="off"
                             />
                         </label>
@@ -57,7 +69,7 @@ export const DairyAddProductForm = () => {
                             <ul className={main.dropdown}>
                                 {filteredProducts.map((filteredProduct) => (
                                     <li className={main.dropdownItem}
-                                        key={filteredProduct.title}
+                                        key={filteredProduct._id}
                                         onClick={() => {handleDropdown(filteredProduct.title);setIsDropdown(!isDropdown)}}
                                     >
                                         {filteredProduct.title}
@@ -74,8 +86,8 @@ export const DairyAddProductForm = () => {
                             <img src={require("../../images/insert.png")} alt="add button" />
                         </button>
                     </div>
-                    
                 </div>
+                <DiaryProductsList />
             </form>
         </>
 };
