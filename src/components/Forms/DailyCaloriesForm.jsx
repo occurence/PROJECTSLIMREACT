@@ -1,34 +1,19 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useUser } from '../../hooks/useUser';
 import { update } from '../../redux/user/userOperations';
 import main from '../App.module.css';
+import { DailyCalorieIntake } from '../Layout/DailyCalorieIntake';
 import Modal from 'react-modal';
+Modal.setAppElement('#root');
 
 export const DailyCaloriesForm = () => {
     const dispatch = useDispatch();
     const { isLoggedIn } = useUser();
     const [formData, setFormData] = useState({});
     const [modal, setModal] = useState(false);
-    const modalForm = {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-          padding: "0px",
-          backgroundColor:"var(--white)",
-          borderColor: "var(--gray)",
-          zIndex: 1000,
-        },
-        overlay: {
-          backgroundColor:"var(--overlay)",
-          zIndex: 1000,
-        }
-      }
-
+    let intake;
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -37,7 +22,7 @@ export const DailyCaloriesForm = () => {
         const weight = Number(form.elements.weight.value);
         const desired = Number(form.elements.desired.value);
         const blood = form.elements.blood.value;
-        const intake = 10 * weight + 6.25 * height - 5 * age - 161 - 10 * (desired);
+        intake = 10 * weight + 6.25 * height - 5 * age - 161 - 10 * (desired);
         setFormData({ height, age, weight, desired, blood, intake });
         setModal(true);
         form.reset();
@@ -68,42 +53,16 @@ export const DailyCaloriesForm = () => {
                         <input type="number" name="weight" autoComplete="weight" required />
                     </label>
                     <div className={main.radio}>
-                        <div className={main.radioItem}><input type="radio" name="option" value="o" defaultChecked={true} /><label className={main.radioLabel}>O</label></div>
-                        <div className={main.radioItem}><input type="radio" name="option" value="a" /><label className={main.radioLabel}>A</label></div>
-                        <div className={main.radioItem}><input type="radio" name="option" value="b" /><label className={main.radioLabel}>B</label></div>
-                        <div className={main.radioItem}><input type="radio" name="option" value="ab" /><label className={main.radioLabel}>AB</label></div>
+                        <div className={main.radioItem}><input type="radio" name="blood" value="1" defaultChecked={true} /><label className={main.radioLabel}>O</label></div>
+                        <div className={main.radioItem}><input type="radio" name="blood" value="2" /><label className={main.radioLabel}>A</label></div>
+                        <div className={main.radioItem}><input type="radio" name="blood" value="3" /><label className={main.radioLabel}>B</label></div>
+                        <div className={main.radioItem}><input type="radio" name="blood" value="4" /><label className={main.radioLabel}>AB</label></div>
                     </div>
                 </div>
                 <div className={main.weightWrapper}>
                     <button type="submit" id={main.weight}>Start losing weight</button>
                 </div>
             </form>
-            <Modal
-                isOpen={modal}
-                onRequestClose={()=>{setModal(false)}}
-                contentLabel="Daily Calorie Intake"
-                style={modalForm}
-                shouldCloseOnOverlayClick={false}
-                shouldCloseOnEsc={true}
-            >
-                <div className={main.modal}>
-                    <div className={main.closeWrapper}>
-                        <button className={main.close} onClick={()=>{setModal(!modal)}}>
-                            <img src={require("../../images/close.png")} />
-                        </button>
-                    </div>
-                    <p className={main.tag}>Your recommended daily<br />calorie intake is</p>
-                        <p className={main.intake}>{formData.intake} <sub style={{fontSize:"20px"}}>kcal</sub></p>
-                        <hr className={main.hr} />
-                    <div className={main.recommend} style={{height:"220px",paddingLeft:"150px"}}>
-                        <p className={main.title}>Foods you should not eat</p>
-                        <p className={main.caption}>Flour products</p>
-                        <p className={main.caption}>Milk</p>
-                        <p className={main.caption}>Read meat</p>
-                        <p className={main.caption}>Smoked meats</p>
-                    </div>
-                    <button type="submit" id={main.weightModal}>Start losing weight</button>
-                </div>
-            </Modal>
+            <DailyCalorieIntake modal={modal} setModal={setModal} formData={formData} />
         </>
 };
