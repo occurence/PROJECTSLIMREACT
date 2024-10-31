@@ -11,19 +11,17 @@ const CalculatorPage = () => {
             <Helmet>
                 <title>Calculator</title>
             </Helmet>
-            {isLoggedIn ? 
-                <>
+            {isLoggedIn &&
+                (<>
                     <div className={main.left}>
                         <CalculatorCalorieForm />
                     </div>
                     <div className={main.right}>
                         <RightSideBar />
                     </div>
-                    <img src={require("../images/leaveshalf.png")} className={main.backgroundHalf} />
-                </> : 
-                <>
-                    Logged Out Calculator
-                </>}
+                    <img src={require("../images/leaveshalf.png")} alt="background leaves" className={main.backgroundHalf} />
+                </>)
+            }
         </HelmetProvider>
     )
 };
