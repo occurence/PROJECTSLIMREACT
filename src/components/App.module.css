@@ -186,6 +186,22 @@
     display: flex;
     width: 100%;
     justify-content: end;
+}.weight {
+    position: relative;
+    display: flex;
+    text-decoration: none;
+    font-size: larger;
+    font-weight: 400;
+    color: var(--white);
+    background-color: var(--orange);
+    border-radius: 40px;
+    width: 220px;
+    height: 50px;
+    text-align: center;
+    border: 0;
+    padding: 0px;
+    align-items: center;
+    justify-content: center;
 }#weight {
     width: 220px;
     top: 50px;
