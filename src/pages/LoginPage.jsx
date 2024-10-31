@@ -18,7 +18,6 @@ const LoginPage = () => {
                     <img src={require("../images/backgroundwhole.png")} alt="background whole" className={main.backgroundWhole} />
                 </>)
             }
-            
         </HelmetProvider>
     )
 };

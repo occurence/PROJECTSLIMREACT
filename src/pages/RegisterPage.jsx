@@ -10,16 +10,14 @@ const RegisterPage = () => {
             <Helmet>
                 <title>Register</title>
             </Helmet>
-            {isLoggedIn ? 
-                <>
-                    Logged In Register
-                </> : 
-                <>
+            {isLoggedIn && 
+                (<>
                     <div className={main.left}>
                         <RegistrationForm />
                     </div>
-                    <img src={require("../images/backgroundwhole.png")} className={main.backgroundWhole} />
-                </>}
+                    <img src={require("../images/backgroundwhole.png")} alt="background whole" className={main.backgroundWhole} />
+                </>)
+            }
         </HelmetProvider>
     )
 };
