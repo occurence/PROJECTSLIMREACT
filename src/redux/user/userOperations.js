@@ -60,10 +60,13 @@ export const logOut = createAsyncThunk(
   '/users/logout',
   async (_, thunkAPI) => {
     try {
+      if(!Cookies.get('access')){Cookies.set('access', localStorage.getItem('accessToken'))}
+      if(!Cookies.get('refresh')){Cookies.set('access', localStorage.getItem('refreshToken'))}
       const res = await axios.get('/users/logout');
       toast.success(`Success ${res?.status}: \nLogout successful`, {style:{backgroundColor:"var(--success)"}});
-      Cookies.remove('access');
-      Cookies.remove('refresh');
+      Cookies.set('access', null);
+      // Cookies.remove('access');
+      // Cookies.remove('refresh');
       clearAuthHeader();
       return res.data;
     } catch (error) {
@@ -89,7 +92,6 @@ export const update = createAsyncThunk(
 export const refreshUser = createAsyncThunk(
   '/users/refresh',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
     const persistedToken = Cookies.get('access');
     const persistedRefreshToken = Cookies.get('refresh');
 
@@ -98,13 +100,8 @@ export const refreshUser = createAsyncThunk(
     }
 
     try {
-      // setAuthHeader(persistedRefreshToken);
-      // const res = await axios.post('/users/refresh', {sid: state.auth.sid});
-      const res = await axios.post('/users/refresh', {refreshToken: persistedRefreshToken});
-      // const res = await axios.post('/users/refresh');
+      const res = await axios.post('/users/refresh');
       toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
-      // setAuthHeader(res.data.accessToken);
-      // setAuthHeader(persistedToken);
       setAuthHeader(persistedRefreshToken);
       return res.data;
     } catch (error) {
