@@ -1,10 +1,12 @@
 import main from '../App.module.css';
+import { useToday } from '../../hooks/useToday';
 
 export const RightSideBar = () => {
+    const { day } = useToday();
     return (
         <>
             <div className={main.summary}>
-                <p className={main.title}>Summary for 28.10.2024</p>
+                <p className={main.title}>Summary for {day}</p>
                 <table>
                     <tbody>
                         <tr><td>Left</td><td>000 kcal</td></tr>
