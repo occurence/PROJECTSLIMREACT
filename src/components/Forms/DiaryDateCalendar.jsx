@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { setCalendar } from '../../redux/calendar/calendarSlice';
 import main from '../App.module.css';
 
 export const DiaryDateCalendar = () => {
@@ -6,7 +7,8 @@ export const DiaryDateCalendar = () => {
     const [date, setDate] = useState(today.toLocaleDateString('en-CA'));
     return (
         <label className={main.label}>
-            <input type="date" name="date" defaultValue={date.toString()} autoComplete="date" className={main.calendarLabel} />
+            {/* <input type="date" name="date" onChange={(e) => {setDate(e);setCalendar();}} defaultValue={date.toString()} autoComplete="date" className={main.calendarLabel} /> */}
+            <input type="date" name="date" onChange={(e) => {setDate(e);setCalendar();}} defaultValue={date.toString()} autoComplete="date" className={main.calendarLabel} />
         </label>
         )
 }
