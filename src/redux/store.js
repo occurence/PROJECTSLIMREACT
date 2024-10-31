@@ -3,7 +3,10 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import storage from 'redux-persist/lib/storage';
 import { userReducer } from './user/userSlice';
 import { productsReducer } from '../redux/product/productsSlice';
+import { todaysReducer } from '../redux/today/todaysSlice';
 import { filterReducer } from '../redux/filter/filterSlice';
+import { calendarReducer } from '../redux/calendar/calendarSlice';
+
 
 const userPersistConfig = {
   key: 'user',
@@ -15,7 +18,9 @@ export const store = configureStore({
   reducer: {
     user: persistReducer(userPersistConfig, userReducer),
     products: productsReducer,
+    todays: todaysReducer,
     filter: filterReducer,
+    calendar: calendarReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
