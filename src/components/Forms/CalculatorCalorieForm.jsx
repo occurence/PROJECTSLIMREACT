@@ -7,7 +7,7 @@ import main from '../App.module.css';
 export const CalculatorCalorieForm = () => {
     const dispatch = useDispatch();
     const { user, isLoggedIn } = useUser();
-    const { year } = useToday();
+    const { defaultDate } = useToday();
     const _id = user._id;
     const handleSubmit = e => {
         e.preventDefault();
@@ -20,7 +20,7 @@ export const CalculatorCalorieForm = () => {
         const intake = 10 * weight + 6.25 * height - 5 * age - 161 - 10 * (desired);
         console.log({
             user: _id,
-            date: year,
+            date: defaultDate,
             height,
             age,
             weight,
@@ -31,7 +31,7 @@ export const CalculatorCalorieForm = () => {
         dispatch(
             addToday({
                 user: `${_id}`,
-                date: `${year}`,
+                date: `${defaultDate}`,
                 height: `${height}`,
                 age: `${age}`,
                 weight: `${weight}`,
