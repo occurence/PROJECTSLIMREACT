@@ -18,16 +18,6 @@ export const CalculatorCalorieForm = () => {
         const desired = Number(form.elements.desired.value);
         const blood = Number(form.elements.blood.value);
         const intake = 10 * weight + 6.25 * height - 5 * age - 161 - 10 * (desired);
-        console.log({
-            user: _id,
-            date: defaultDate,
-            height,
-            age,
-            weight,
-            weightDesired: desired,
-            blood,
-            dailyRate: intake,
-        });
         dispatch(
             addToday({
                 user: `${_id}`,

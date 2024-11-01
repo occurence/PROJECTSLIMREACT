@@ -35,12 +35,8 @@ export const App = () => {
 
     if(accessToken && refreshToken){setAuthHeader(accessToken)}
     if(isLoggedIn){
-      // dispatch(getProducts());
-      // dispatch(getTodays());
       dispatch(fetchOnce());
-      // fetchOnce();
     }
-  // }, [isLoggedIn]);
 }, [dispatch, isLoggedIn]);
 
   return isRefreshing ? (
