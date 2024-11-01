@@ -22,16 +22,26 @@ export const App = () => {
   const dispatch = useDispatch();
   const { isLoggedIn, isRefreshing } = useUser();
 
+  const fetchOnce = () => {
+    return async (dispatch) => {
+        await dispatch(getProducts());
+        await dispatch(getTodays());
+    };
+};
   useEffect(() => {
+    console.log("isLoggedIn:", isLoggedIn);
     const accessToken = Cookies.get('access');
     const refreshToken = Cookies.get('refresh');
 
     if(accessToken && refreshToken){setAuthHeader(accessToken)}
     if(isLoggedIn){
-      dispatch(getProducts());
-      dispatch(getTodays());
+      // dispatch(getProducts());
+      // dispatch(getTodays());
+      dispatch(fetchOnce());
+      // fetchOnce();
     }
-  }, [isLoggedIn]);
+  // }, [isLoggedIn]);
+}, [dispatch, isLoggedIn]);
 
   return isRefreshing ? (
     <Loader />
