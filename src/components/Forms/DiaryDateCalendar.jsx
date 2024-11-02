@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCalendar } from '../../redux/calendar/calendarSlice';
 import { useToday } from '../../hooks/useToday';
@@ -8,8 +7,8 @@ export const DiaryDateCalendar = () => {
     const dispatch = useDispatch();
     const { month } = useToday();
     const today = new Date(month);
-    const [date, setDate] = useState(today.toLocaleDateString('en-CA'));
-    // const date = today.toLocaleDateString('en-CA');
+    // const [date, setDate] = useState(today.toLocaleDateString('en-CA'));
+    const date = today.toLocaleDateString('en-CA');
     const handleCalendarChange = e => {
         const date = new Date(e.target.value);
         const formatDefault = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;

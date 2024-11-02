@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { DebounceInput } from 'react-debounce-input';
 import { setFilter } from '../../redux/filter/filterSlice';
-import { consumeProduct } from '../../redux/today/todaysOperations';
 import { useUser } from '../../hooks/useUser';
 import { useProduct } from '../../hooks/useProduct';
 import { DiaryDateCalendar } from './DiaryDateCalendar';

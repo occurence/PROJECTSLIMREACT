@@ -12,7 +12,6 @@ export const DiaryProductsList = () => {
                         productName={productName}
                         grams={grams}
                         />
-                    // <li key={productId}>{productName}: {grams}</li>
                 )}
         </>
     )
