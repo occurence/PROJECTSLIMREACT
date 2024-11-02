@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { DebounceInput } from 'react-debounce-input';
 import { setFilter } from '../../redux/filter/filterSlice';
+import { consumeProduct } from '../../redux/today/todaysOperations';
 import { useUser } from '../../hooks/useUser';
 import { useProduct } from '../../hooks/useProduct';
 import { DiaryDateCalendar } from './DiaryDateCalendar';
@@ -24,6 +25,11 @@ export const DairyAddProductForm = () => {
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.currentTarget;
+        const productName = form.elements.product.value;
+        const grams = form.elements.grams.value;
+        // alert(productName, grams);
+        console.log(`${productName}: ${grams}`);
+        // dispatch(consumeProduct());
         setProductInput('');
         dispatch(setFilter(''));
         setIsDropdown(false);
