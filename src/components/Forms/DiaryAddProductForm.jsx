@@ -44,10 +44,10 @@ export const DairyAddProductForm = () => {
 
     return isLoggedIn &&
         <>
-            <form className={main.form} onSubmit={handleSubmit} autoComplete="off">
+            <form className={main.form} style={{left:"25px",height:"70%",gap:"5px"}} onSubmit={handleSubmit} autoComplete="off">
                 <DiaryDateCalendar />
                 <div className={main.row}>
-                    <div style={{ position: 'relative', width:"70%" }}>
+                    <div style={{ position: 'relative', width:"45%" }}>
                         <label className={main.label}>Enter product name
                             <DebounceInput type="text" name="product"
                                 value={productInput}
@@ -69,7 +69,7 @@ export const DairyAddProductForm = () => {
                             </ul>
                         )}
                     </div>
-                    <div style={{position:"relative",display:"flex",gap:"50px"}}>
+                    <div style={{position:"relative", width:"55%" ,display:"flex",gap:"50px"}}>
                         <label className={main.label} style={{width:"30%",textAlign:"end"}}>Grams
                             <input type="number" step="100" min="0" style={{width:"85%"}} name="grams" autoComplete="grams" />
                         </label>
@@ -78,7 +78,9 @@ export const DairyAddProductForm = () => {
                         </button>
                     </div>
                 </div>
-                <DiaryProductsList />
+                <div style={{paddingTop:"30px"}}>
+                    <DiaryProductsList />
+                </div>
             </form>
         </>
 };
