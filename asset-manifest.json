@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/PROJECTSLIMREACT/static/css/main.088d00b2.css",
+    "main.js": "/PROJECTSLIMREACT/static/js/main.37ec0a3d.js",
+    "static/js/352.138ef69c.chunk.js": "/PROJECTSLIMREACT/static/js/352.138ef69c.chunk.js",
+    "static/js/293.a5821d6c.chunk.js": "/PROJECTSLIMREACT/static/js/293.a5821d6c.chunk.js",
+    "static/js/676.0a35e8ab.chunk.js": "/PROJECTSLIMREACT/static/js/676.0a35e8ab.chunk.js",
+    "static/js/252.ff376757.chunk.js": "/PROJECTSLIMREACT/static/js/252.ff376757.chunk.js",
+    "static/js/464.195da8ed.chunk.js": "/PROJECTSLIMREACT/static/js/464.195da8ed.chunk.js",
+    "static/js/50.9409fec6.chunk.js": "/PROJECTSLIMREACT/static/js/50.9409fec6.chunk.js",
+    "static/js/948.19bc98ce.chunk.js": "/PROJECTSLIMREACT/static/js/948.19bc98ce.chunk.js",
+    "static/media/backgroundwhole.png": "/PROJECTSLIMREACT/static/media/backgroundwhole.42e27024b8ec249aa3a8.png",
+    "static/media/leaveshalf.png": "/PROJECTSLIMREACT/static/media/leaveshalf.ffd82ca94b80e5e20934.png",
+    "index.html": "/PROJECTSLIMREACT/index.html",
+    "main.088d00b2.css.map": "/PROJECTSLIMREACT/static/css/main.088d00b2.css.map",
+    "main.37ec0a3d.js.map": "/PROJECTSLIMREACT/static/js/main.37ec0a3d.js.map",
+    "352.138ef69c.chunk.js.map": "/PROJECTSLIMREACT/static/js/352.138ef69c.chunk.js.map",
+    "293.a5821d6c.chunk.js.map": "/PROJECTSLIMREACT/static/js/293.a5821d6c.chunk.js.map",
+    "676.0a35e8ab.chunk.js.map": "/PROJECTSLIMREACT/static/js/676.0a35e8ab.chunk.js.map",
+    "252.ff376757.chunk.js.map": "/PROJECTSLIMREACT/static/js/252.ff376757.chunk.js.map",
+    "464.195da8ed.chunk.js.map": "/PROJECTSLIMREACT/static/js/464.195da8ed.chunk.js.map",
+    "50.9409fec6.chunk.js.map": "/PROJECTSLIMREACT/static/js/50.9409fec6.chunk.js.map",
+    "948.19bc98ce.chunk.js.map": "/PROJECTSLIMREACT/static/js/948.19bc98ce.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.088d00b2.css",
+    "static/js/main.37ec0a3d.js"
+  ]
+}
