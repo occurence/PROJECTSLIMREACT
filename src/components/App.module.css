@@ -73,16 +73,16 @@
     position: relative;
     /* background-color: var(--white); */
     display: flex;
-    align-content: end;
-    align-items: end;
-    justify-content: start;
+    align-content: flex-end;
+    align-items: flex-end;
+    justify-content: flex-start;
 }.headerWrapperRight {
     position: relative;
     /* background-color: var(--blue); */
     display: flex;
-    align-content: end;
-    align-items: end;
-    justify-content: end;
+    align-content: flex-end;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .link {
@@ -130,7 +130,7 @@
     top: 25%;
     left: 50px;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     align-content: stretch;
     gap: 15px;
     z-index: 1;
@@ -166,14 +166,14 @@
     width: 35%;
     flex-direction: row;
     justify-content: space-between;
-    align-content: start;
+    align-content: flex-start;
 }.radioItem {
     position: relative;
     /* background-color: var(--blue); */
     display: flex;
     /* width: 100%; */
     flex-direction: row;
-    align-content: start;
+    align-content: flex-start;
     gap: 5px;
 }.radio input[type="radio"]:checked+label {
     color: var(--orange);
@@ -185,7 +185,7 @@
     /* background-color: var(--blue); */
     display: flex;
     width: 100%;
-    justify-content: end;
+    justify-content: flex-end;
 }.weight {
     position: relative;
     display: flex;
@@ -298,8 +298,8 @@
     position: absolute;
     display: flex;
     width: 100%;
-    align-items: end;
-    justify-content: end;
+    align-items: flex-end;
+    justify-content: flex-end;
 }.intake {
     font-size: 48px;
     font-weight: 700;
