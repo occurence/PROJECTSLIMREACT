@@ -74,10 +74,10 @@ export const consumeProduct = createAsyncThunk(
 
 export const deleteProduct = createAsyncThunk(
     'todays/deleteConsume',
-    async(todayId, productId, thunkAPI) => {
+    async({ todayDate, productId, productName, grams }, thunkAPI) => {
         try{
-            const res = await axios.delete(`/todays/${todayId}/${productId}`);
-            toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
+            const res = await axios.delete(`/todays/${todayDate}/${productId}`);
+            toast.success(`Success ${res?.status}: \nDeleted ${productName}: ${grams}`, {style:{backgroundColor:"var(--success)"}});
             return res.data;
           } catch (error) {
             toast.error(`Error ${error.response?.status}: \n${error.response?.data?.message}`, {style:{backgroundColor:"var(--error)"}});
