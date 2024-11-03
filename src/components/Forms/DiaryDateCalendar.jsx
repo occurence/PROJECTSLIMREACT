@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCalendar } from '../../redux/calendar/calendarSlice';
 import { useToday } from '../../hooks/useToday';
