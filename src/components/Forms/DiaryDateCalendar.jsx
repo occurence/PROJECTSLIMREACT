@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCalendar } from '../../redux/calendar/calendarSlice';
 import { useToday } from '../../hooks/useToday';
@@ -26,7 +27,7 @@ export const DiaryDateCalendar = () => {
     return (
         <>
             <label className={main.label}>
-                <input type="date" name="date" onChange={handleCalendarChange} defaultValue={date.toString()} autoComplete="date" className={main.calendarLabel} />
+                <input type="date" name="date" onChange={handleCalendarChange} defaultValue={date} autoComplete="date" className={main.calendarLabel} />
             </label>
         </>
     )
