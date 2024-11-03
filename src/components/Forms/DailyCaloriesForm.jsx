@@ -1,15 +1,11 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useUser } from '../../hooks/useUser';
-import { update } from '../../redux/user/userOperations';
 import main from '../App.module.css';
 import { DailyCalorieIntake } from '../Layout/DailyCalorieIntake';
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
 export const DailyCaloriesForm = () => {
-    const dispatch = useDispatch();
     const { isLoggedIn } = useUser();
     const [formData, setFormData] = useState({});
     const [modal, setModal] = useState(false);
