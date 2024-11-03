@@ -3,7 +3,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 import { toast } from 'react-hot-toast';
 
-// axios.defaults.baseURL = 'http://localhost:3001/api';
 axios.defaults.baseURL = 'https://projectslimnode.onrender.com/api';
 
 export const setAuthHeader = accessToken => {
