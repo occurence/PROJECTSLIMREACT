@@ -8,7 +8,6 @@ export const DiaryDateCalendar = () => {
     const dispatch = useDispatch();
     const { month } = useToday();
     const today = new Date(month);
-    // const [date, setDate] = useState(today.toLocaleDateString('en-CA'));
     const date = today.toLocaleDateString('en-CA');
     const handleCalendarChange = e => {
         const date = new Date(e.target.value);

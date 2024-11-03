@@ -8,10 +8,11 @@ export const DiaryProductsList = () => {
         <>
                 {filteredTodays.map(({ productId, productName, grams }) => 
                     <DiaryProductsListItem
+                        key={productId}
                         productId={productId}
                         productName={productName}
                         grams={grams}
-                        />
+                    />
                 )}
         </>
     )

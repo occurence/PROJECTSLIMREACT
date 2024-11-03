@@ -60,15 +60,9 @@ export const deleteToday = createAsyncThunk(
 
 export const consumeProduct = createAsyncThunk(
   'todays/editConsume',
-  // async(todayId, { productId, productName, grams }, thunkAPI) => {
     async({ todayDate, productId, productName, grams }, thunkAPI) => {
       try{
-          // const res = await axios.patch(`/todays/${todayId}`, { productId, productName, grams });
-          // const res = await axios.patch(`/todays/${todayDate}`, { productId, productName, grams });
-          // const res = await axios.patch(`/todays`, { todayDate, productId, productName, grams });
-          // const res = await axios.patch(`/todays`, { todayDate, productId, productName, grams });
           const res = await axios.patch(`/todays/${todayDate}`, {products:[{ productId, productName, grams }]});
-          // toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
           toast.success(`Success ${res?.status}: \n${productName}: ${grams}`, {style:{backgroundColor:"var(--success)"}});
           return res.data;
         } catch (error) {

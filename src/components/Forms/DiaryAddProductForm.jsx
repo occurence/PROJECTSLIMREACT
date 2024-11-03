@@ -18,27 +18,11 @@ export const DairyAddProductForm = () => {
     const [productInput, setProductInput] = useState('');
     const [isDropdown, setIsDropdown] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState(null);
-    const { defaultDate, year } = useToday();
-    // console.log(filteredProducts.length);
+    const { defaultDate } = useToday();
+
     const handleFilterChange = e => {
         setProductInput(e.target.value);
         dispatch(setFilter(e.target.value));
-        // const inputValue = e.target.value;
-        // const inputFormat = inputValue
-        // .replace("(", "\\\\(?")
-        // .replace(")", "\\\\)?")
-        // if (inputValue.includes("(")) {inputFormat += "\\s*\\(?";}
-        // else if (inputValue.includes(")")) {inputFormat += "\\)?";}
-        // + (inputValue.includes("(") ? "\\\\(?" : "") 
-        // + (inputValue.includes(")") ? "\\)?" : "");
-        // + (inputValue.includes("(") ? "\\\\(?" : "") 
-        // + (inputValue.includes(")") ? "\\)?" : "");
-        // console.log(inputFormat)
-        // let formatInput;
-        // if(e.target.value.includes("(")){formatInput="\\(?"}
-        // else if(e.target.value.includes(")")){formatInput="\\)?"}
-        // console.log(formatInput);
-        // const formatInput = e.target.value.includes("(") && "\\(?";
     }
 
     const handleSubmit = e => {
@@ -47,45 +31,19 @@ export const DairyAddProductForm = () => {
         const productName = form.elements.product.value;
         const grams = form.elements.grams.value;
         const formattedDate = new Date(defaultDate).toLocaleDateString('en-CA').split('T')[0];
-        // alert(productName, grams);
-        // console.log(`${productName}: ${grams}`);
         console.log(`${formattedDate},${productName}: ${grams}, Product ID: ${selectedProductId}`);
         
         dispatch(consumeProduct({
             todayDate: defaultDate,
-            // products: [{
-            // productId: selectedProductId,
-            productId: selectedProductId,
-            productName,
-            grams
-            // }]
+            productId: selectedProductId, productName, grams
         }));
-        // dispatch(consumeProduct({
-        //     todayDate: formattedDate,
-        //     body: {
-        //         products: [{
-        //             productId: selectedProductId,
-        //             productName,
-        //             grams
-        //         }]
-        //     }
-        // }));
+
         setSelectedProductId(null);
         setProductInput('');
         dispatch(setFilter(''));
         setIsDropdown(false);
         form.reset();
     }
-
-    // const handleDropdown = e => {
-    //     setProductInput(e);
-    //     dispatch(setFilter(e));
-    //     setIsDropdown(false);
-    //     const inputFormat = e
-    //     .replace("(", "\\\\(?")
-    //     .replace(")", "\\\\)?")
-    //     console.log(inputFormat);
-    // }
 
     const handleDropdown = (title, id) => {
         setSelectedProductId(id);
@@ -118,7 +76,6 @@ export const DairyAddProductForm = () => {
                                 {filteredProducts.map((filteredProduct) => (
                                     <li className={main.dropdownItem}
                                         key={filteredProduct._id}
-                                        // onClick={() => {handleDropdown(filteredProduct.title);setIsDropdown(!isDropdown)}}
                                         onClick={() => { handleDropdown(filteredProduct.title, filteredProduct._id) }}
                                     >
                                         {filteredProduct.title}
