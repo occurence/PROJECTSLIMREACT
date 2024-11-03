@@ -30,8 +30,7 @@ export const DairyAddProductForm = () => {
         const form = e.currentTarget;
         const productName = form.elements.product.value;
         const grams = form.elements.grams.value;
-        const formattedDate = new Date(defaultDate).toLocaleDateString('en-CA').split('T')[0];
-        console.log(`${formattedDate},${productName}: ${grams}, Product ID: ${selectedProductId}`);
+        console.log(`${defaultDate},${productName}: ${grams}, Product ID: ${selectedProductId}`);
         
         dispatch(consumeProduct({
             todayDate: defaultDate,
