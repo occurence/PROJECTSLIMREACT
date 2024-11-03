@@ -60,10 +60,16 @@ export const deleteToday = createAsyncThunk(
 
 export const consumeProduct = createAsyncThunk(
   'todays/editConsume',
-  async(todayId, { productId, grams }, thunkAPI) => {
+  // async(todayId, { productId, productName, grams }, thunkAPI) => {
+    async({ todayDate, productId, productName, grams }, thunkAPI) => {
       try{
-          const res = await axios.patch(`/todays/${todayId}`, { productId, grams });
-          toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
+          // const res = await axios.patch(`/todays/${todayId}`, { productId, productName, grams });
+          // const res = await axios.patch(`/todays/${todayDate}`, { productId, productName, grams });
+          // const res = await axios.patch(`/todays`, { todayDate, productId, productName, grams });
+          // const res = await axios.patch(`/todays`, { todayDate, productId, productName, grams });
+          const res = await axios.patch(`/todays/${todayDate}`, {products:[{ productId, productName, grams }]});
+          // toast.success(`Success ${res?.status}: \n${res?.data.message}`, {style:{backgroundColor:"var(--success)"}});
+          toast.success(`Success ${res?.status}: \n${productName}: ${grams}`, {style:{backgroundColor:"var(--success)"}});
           return res.data;
         } catch (error) {
           toast.error(`Error ${error.response?.status}: \n${error.response?.data?.message}`, {style:{backgroundColor:"var(--error)"}});
